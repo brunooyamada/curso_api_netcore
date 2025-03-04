@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using NpgsqlTypes;
 
 namespace Data.Repository
 {
@@ -49,6 +50,11 @@ namespace Data.Repository
             }
 
             return item;
+        }
+
+        public async Task<bool> ExistAsync(long id)
+        {
+            return await _dataset.AnyAsync(p => p.Id.Equals(id));
         }
 
         public Task<T> SelectAsync(long id)

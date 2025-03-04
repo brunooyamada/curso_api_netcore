@@ -11,5 +11,6 @@ namespace Domain.Interfaces
         Task<bool> DeleteAsync(long id);
         Task<T> SelectAsync(long id);
         Task<IEnumerable<T>> SelectAsync();
+        Task<bool> ExistAsync(long id);
     }
 }
