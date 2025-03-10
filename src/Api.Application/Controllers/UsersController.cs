@@ -14,6 +14,7 @@ namespace Api.Application.Controllers
         {
             _service = service;
         }
+
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
@@ -31,5 +32,25 @@ namespace Api.Application.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
+
+        [HttpGet]
+        [Route("{id}", Name = "GetWithId")]
+        public async Task<ActionResult> Get(long id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                return Ok(await _service.Get(id));
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
     }
 }
