@@ -1,6 +1,8 @@
 using CrossCutting.DependencyInjection;
 using Data.Context;
+using Domain.Security;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +33,15 @@ builder.Services.AddSwaggerGen(c =>
 ));
 ConfigureService.ConfigureDependenciesService(builder.Services);
 ConfigureRepository.ConfigureDependenciesRepository(builder.Services);
+
+var signingConfigurations = new SigningConfigurations();
+builder.Services.AddSingleton(signingConfigurations);
+
+var tokenConfigurations = new TokenConfigurations();
+new ConfigureFromConfigurationOptions<TokenConfigurations>(
+    builder.Configuration.GetSection("TokenConfigurations")
+).Configure(tokenConfigurations);
+builder.Services.AddSingleton(tokenConfigurations);
 
 var app = builder.Build();
 
