@@ -1,6 +1,8 @@
 using CrossCutting.DependencyInjection;
 using Data.Context;
 using Domain.Security;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -42,6 +44,28 @@ new ConfigureFromConfigurationOptions<TokenConfigurations>(
     builder.Configuration.GetSection("TokenConfigurations")
 ).Configure(tokenConfigurations);
 builder.Services.AddSingleton(tokenConfigurations);
+
+builder.Services.AddAuthentication(authOptions =>
+{
+    authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(bearerOptions =>
+{
+    var paramsValidation = bearerOptions.TokenValidationParameters;
+    paramsValidation.IssuerSigningKey = signingConfigurations.Key;
+    paramsValidation.ValidAudience = tokenConfigurations.Audience;
+    paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
+    paramsValidation.ValidateIssuerSigningKey = true;
+    paramsValidation.ValidateLifetime = true;
+    paramsValidation.ClockSkew = TimeSpan.Zero; // Tempo de tolerância para expiração de um token (utilizado caso haja problemas de sincronismo de horário entre diferentes computadores envolvidos no processo de comunicação)
+});
+
+builder.Services.AddAuthorization(auth =>
+{
+    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+        .RequireAuthenticatedUser().Build());
+});
 
 var app = builder.Build();
 
