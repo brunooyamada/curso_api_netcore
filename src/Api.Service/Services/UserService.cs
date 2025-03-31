@@ -32,7 +32,7 @@ namespace Service.Services
             return _mapper.Map<IEnumerable<UserDto>>(listEntity);
         }
 
-        public async Task<UserDtoCreateResult> Post(UserDto user)
+        public async Task<UserDtoCreateResult> Post(UserDtoCreate user)
         {
             var model = _mapper.Map<UserEntity>(user);
             var entity = _mapper.Map<UserEntity>(model);
@@ -41,7 +41,7 @@ namespace Service.Services
             return _mapper.Map<UserDtoCreateResult>(result);
         }
 
-        public async Task<UserDtoUpdateResult> Put(UserDto user)
+        public async Task<UserDtoUpdateResult> Put(UserDtoUpdate user)
         {
             var model = _mapper.Map<UserEntity>(user);
             var entity = _mapper.Map<UserEntity>(model);
