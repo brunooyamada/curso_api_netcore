@@ -3,6 +3,7 @@ using Domain.Dtos.User;
 using Domain.Entities;
 using Domain.Interfaces;
 using Domain.Interfaces.Services.User;
+using Domain.Models;
 
 namespace Service.Services
 {
@@ -34,7 +35,7 @@ namespace Service.Services
 
         public async Task<UserDtoCreateResult> Post(UserDtoCreate user)
         {
-            var model = _mapper.Map<UserEntity>(user);
+            var model = _mapper.Map<UserModel>(user);
             var entity = _mapper.Map<UserEntity>(model);
             var result = await _repository.InsertAsync(entity);
 
@@ -43,7 +44,7 @@ namespace Service.Services
 
         public async Task<UserDtoUpdateResult> Put(UserDtoUpdate user)
         {
-            var model = _mapper.Map<UserEntity>(user);
+            var model = _mapper.Map<UserModel>(user);
             var entity = _mapper.Map<UserEntity>(model);
             var result = await _repository.UpdateAsync(entity);
 
