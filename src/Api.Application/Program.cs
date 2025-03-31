@@ -1,4 +1,6 @@
+using AutoMapper;
 using CrossCutting.DependencyInjection;
+using CrossCutting.Mappings;
 using Data.Context;
 using Domain.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -61,6 +63,16 @@ builder.Services.AddSwaggerGen(c =>
 
 ConfigureService.ConfigureDependenciesService(builder.Services);
 ConfigureRepository.ConfigureDependenciesRepository(builder.Services);
+
+var config = new AutoMapper.MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new DtoToModelProfile());
+    cfg.AddProfile(new EntityToDtoProfile());
+    cfg.AddProfile(new ModelToEntityProfile());
+});
+
+IMapper mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 var signingConfigurations = new SigningConfigurations();
 builder.Services.AddSingleton(signingConfigurations);
