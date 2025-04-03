@@ -15,7 +15,10 @@ namespace CrossCutting.DependencyInjection
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
 
-            serviceCollection.AddDbContext<MyContext>(options => options.UseNpgsql("Server=localhost;Port=5432;Database=dbApi;Uid=postgres;Pwd=masterkey"));
+            serviceCollection.AddDbContext<MyContext>(
+                options => options.UseNpgsql("Server=localhost;Port=5432;Database=dbApi2;Uid=postgres;Pwd=masterkey")
+                //options => options.UseSqlServer("Password=masterkey;Persist Security Info=True;User ID=sa;Initial Catalog=dbApi;Data Source=bruno\\sqlexpress;TrustServerCertificate=True")
+            );
         }
     }
 }

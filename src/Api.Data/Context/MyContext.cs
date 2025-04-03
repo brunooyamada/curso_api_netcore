@@ -14,6 +14,17 @@ namespace Data.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<UserEntity>(new UserMap().Configure);
+
+            modelBuilder.Entity<UserEntity>().HasData(
+                new UserEntity
+                {
+                    Id = 1,
+                    Name = "Administrador",
+                    Email = "mfrinfo@mail.com",
+                    CreatedAt = DateTime.UtcNow,
+                    UpdateAt = DateTime.UtcNow,
+                }
+            );
         }
 
         public DbSet<UserEntity> Users { get; set; }

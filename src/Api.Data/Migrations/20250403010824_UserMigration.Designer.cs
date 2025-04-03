@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Data.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20250301022313_UserMigration")]
+    [Migration("20250403010824_UserMigration")]
     partial class UserMigration
     {
         /// <inheritdoc />
@@ -55,6 +55,16 @@ namespace Data.Migrations
                         .IsUnique();
 
                     b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedAt = new DateTime(2025, 4, 3, 1, 8, 24, 298, DateTimeKind.Utc).AddTicks(9659),
+                            Email = "mfrinfo@mail.com",
+                            Name = "Administrador",
+                            UpdateAt = new DateTime(2025, 4, 3, 1, 8, 24, 298, DateTimeKind.Utc).AddTicks(9662)
+                        });
                 });
 #pragma warning restore 612, 618
         }
