@@ -120,7 +120,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-if (Environment.GetEnvironmentVariable("MIGRATION").ToLower() == "APLICAR".ToLower())
+var conexao = Environment.GetEnvironmentVariable("MIGRATION")?.ToLower() ?? "";
+
+if (conexao == "APLICAR".ToLower())
 {
     using (var service = app.Services.GetRequiredService<IServiceScopeFactory>()
         .CreateScope())
