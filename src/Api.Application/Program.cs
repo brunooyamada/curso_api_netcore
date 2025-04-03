@@ -120,4 +120,16 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+if (Environment.GetEnvironmentVariable("MIGRATION").ToLower() == "APLICAR".ToLower())
+{
+    using (var service = app.Services.GetRequiredService<IServiceScopeFactory>()
+        .CreateScope())
+    {
+        using (var context = service.ServiceProvider.GetService<MyContext>())
+        {
+            context.Database.Migrate();
+        }
+    }
+}
+
 app.Run();
