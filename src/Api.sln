@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api.Service", "Api.Service"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Data.Test", "Api.Data.Test\Api.Data.Test.csproj", "{F722FFC7-C88B-4B53-8FC4-5A4D775E0272}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Service.Test", "Api.Service.Test\Api.Service.Test.csproj", "{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,18 @@ Global
 		{F722FFC7-C88B-4B53-8FC4-5A4D775E0272}.Release|x64.Build.0 = Release|Any CPU
 		{F722FFC7-C88B-4B53-8FC4-5A4D775E0272}.Release|x86.ActiveCfg = Release|Any CPU
 		{F722FFC7-C88B-4B53-8FC4-5A4D775E0272}.Release|x86.Build.0 = Release|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Debug|x64.Build.0 = Debug|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Debug|x86.Build.0 = Debug|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Release|x64.ActiveCfg = Release|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Release|x64.Build.0 = Release|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Release|x86.ActiveCfg = Release|Any CPU
+		{19DAD15C-5AD8-4DEE-98B6-1EB7463F740F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
