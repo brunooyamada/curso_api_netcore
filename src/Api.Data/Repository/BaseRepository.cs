@@ -39,7 +39,7 @@ namespace Data.Repository
         {
             try
             {
-                item.CreatedAt = DateTime.UtcNow;
+                item.CreateAt = DateTime.UtcNow;
                 _dataset.Add(item);
 
                 await _context.SaveChangesAsync();
@@ -91,7 +91,7 @@ namespace Data.Repository
                     return null;
                 }
                 item.UpdateAt = DateTime.UtcNow;
-                item.CreatedAt = result.CreatedAt;
+                item.CreateAt = result.CreateAt;
 
                 _context.Entry(result).CurrentValues.SetValues(item);
                 await _context.SaveChangesAsync();

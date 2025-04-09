@@ -11,7 +11,7 @@ namespace Domain.Entities
         public long Id { get; set; }
 		private DateTime? _createAt;
 
-		public DateTime? CreatedAt
+		public DateTime? CreateAt
 		{
 			get { return _createAt; }
 			set { _createAt = (value == null ? DateTime.UtcNow : value); }
