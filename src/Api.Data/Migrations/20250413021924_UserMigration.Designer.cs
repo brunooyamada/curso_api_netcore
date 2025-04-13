@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Data.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20250403010824_UserMigration")]
+    [Migration("20250413021924_UserMigration")]
     partial class UserMigration
     {
         /// <inheritdoc />
@@ -33,7 +33,7 @@ namespace Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime?>("CreateAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
@@ -60,10 +60,10 @@ namespace Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2025, 4, 3, 1, 8, 24, 298, DateTimeKind.Utc).AddTicks(9659),
+                            CreateAt = new DateTime(2025, 4, 13, 2, 19, 24, 210, DateTimeKind.Utc).AddTicks(423),
                             Email = "mfrinfo@mail.com",
                             Name = "Administrador",
-                            UpdateAt = new DateTime(2025, 4, 3, 1, 8, 24, 298, DateTimeKind.Utc).AddTicks(9662)
+                            UpdateAt = new DateTime(2025, 4, 13, 2, 19, 24, 210, DateTimeKind.Utc).AddTicks(427)
                         });
                 });
 #pragma warning restore 612, 618

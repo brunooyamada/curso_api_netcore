@@ -8,7 +8,7 @@ namespace Data.Context
         public MyContext CreateDbContext(string[] args)
         {
             // Usado para criar as migrações
-            var connectionString = "Server=localhost;Port=5432;Database=dbApi2;Uid=postgres;Pwd=masterkey";
+            var connectionString = "Server=localhost;Port=5432;Database=dbApi;Uid=postgres;Pwd=masterkey";
             //var connectionString = "Password=masterkey;Persist Security Info=True;User ID=sa;Initial Catalog=dbApi;Data Source=bruno\\sqlexpress;TrustServerCertificate=True";
             var optionsBuilder = new DbContextOptionsBuilder<MyContext>();
             optionsBuilder.UseNpgsql(connectionString);

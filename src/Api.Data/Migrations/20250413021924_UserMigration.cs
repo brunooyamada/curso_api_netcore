@@ -20,7 +20,7 @@ namespace Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(60)", maxLength: 60, nullable: false),
                     Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    CreateAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     UpdateAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
@@ -30,8 +30,8 @@ namespace Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "User",
-                columns: new[] { "Id", "CreatedAt", "Email", "Name", "UpdateAt" },
-                values: new object[] { 1L, new DateTime(2025, 4, 3, 1, 8, 24, 298, DateTimeKind.Utc).AddTicks(9659), "mfrinfo@mail.com", "Administrador", new DateTime(2025, 4, 3, 1, 8, 24, 298, DateTimeKind.Utc).AddTicks(9662) });
+                columns: new[] { "Id", "CreateAt", "Email", "Name", "UpdateAt" },
+                values: new object[] { 1L, new DateTime(2025, 4, 13, 2, 19, 24, 210, DateTimeKind.Utc).AddTicks(423), "mfrinfo@mail.com", "Administrador", new DateTime(2025, 4, 13, 2, 19, 24, 210, DateTimeKind.Utc).AddTicks(427) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_Email",

@@ -16,7 +16,7 @@ namespace CrossCutting.DependencyInjection
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
 
             var banco = Environment.GetEnvironmentVariable("DATABASE")?.ToLower() ?? "";
-            var conexao = Environment.GetEnvironmentVariable("DB_CONNECTION") ?? "Server=localhost;Port=5432;Database=dbApi2;Uid=postgres;Pwd=masterkey";
+            var conexao = Environment.GetEnvironmentVariable("DB_CONNECTION") ?? "Server=localhost;Port=5432;Database=dbApi;Uid=postgres;Pwd=masterkey";
 
 
             if (banco == "SQLSERVER".ToLower())
@@ -29,7 +29,7 @@ namespace CrossCutting.DependencyInjection
             {
                 serviceCollection.AddDbContext<MyContext>(
                     options => options.UseNpgsql(conexao)
-                    //options => options.UseNpgsql("Server=localhost;Port=5432;Database=dbApi2;Uid=postgres;Pwd=masterkey")
+                    //options => options.UseNpgsql("Server=localhost;Port=5432;Database=dbApi;Uid=postgres;Pwd=masterkey")
                     //options => options.UseSqlServer("Password=masterkey;Persist Security Info=True;User ID=sa;Initial Catalog=dbApi;Data Source=bruno\\sqlexpress;TrustServerCertificate=True")
                 );
             }
