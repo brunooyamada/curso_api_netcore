@@ -99,8 +99,8 @@ namespace Service.Services
             return new
             {
                 autenticated = true,
-                createDate = createDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                expirationDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                create = createDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                expiration = expirationDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 accessToken = token,
                 userName = user.Email,
                 name = user.Name,
