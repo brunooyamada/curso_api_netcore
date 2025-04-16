@@ -14,6 +14,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+IWebHostEnvironment _envionment = builder.Environment;
+if (_envionment.IsEnvironment("Testing"))
+{
+    Environment.SetEnvironmentVariable("DB_CONNECTION", "Persist Security Info=True;Server=localhost;Port=5432;Database=dbApi_Integration;Uid=postgres;Pwd=masterkey");
+    Environment.SetEnvironmentVariable("DATABASE", "Postgres");
+    Environment.SetEnvironmentVariable("MIGRATION", "APLICAR");
+    Environment.SetEnvironmentVariable("Audience", "ExampleAudience");
+    Environment.SetEnvironmentVariable("Issuer", "ExampleIssuer");
+    Environment.SetEnvironmentVariable("Seconds", "28800");
+}
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -22,7 +33,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "Curso de API com AspNetCore 8 - Na prática",
+        Title = "Curso de API com AspNetCore 8 - Na prï¿½tica",
         Description = "Arquitetura DDD",
         TermsOfService = new Uri("http://www.mfrinfo.com.br"),
         Contact = new OpenApiContact
@@ -33,7 +44,7 @@ builder.Services.AddSwaggerGen(c =>
         },
         License = new OpenApiLicense
         {
-            Name = "Termo de licença de Uso",
+            Name = "Termo de licenï¿½a de Uso",
             Url = new Uri("http://www.mfrinfo.com.br"),
         }
     });
@@ -49,7 +60,7 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
-            new OpenApiSecurityScheme 
+            new OpenApiSecurityScheme
             {
                 Reference = new OpenApiReference
                 {
@@ -95,7 +106,7 @@ builder.Services.AddAuthentication(authOptions =>
     paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
     paramsValidation.ValidateIssuerSigningKey = true;
     paramsValidation.ValidateLifetime = true;
-    paramsValidation.ClockSkew = TimeSpan.Zero; // Tempo de tolerância para expiração de um token (utilizado caso haja problemas de sincronismo de horário entre diferentes computadores envolvidos no processo de comunicação)
+    paramsValidation.ClockSkew = TimeSpan.Zero; // Tempo de tolerï¿½ncia para expiraï¿½ï¿½o de um token (utilizado caso haja problemas de sincronismo de horï¿½rio entre diferentes computadores envolvidos no processo de comunicaï¿½ï¿½o)
 });
 
 builder.Services.AddAuthorization(auth =>
