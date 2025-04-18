@@ -1,3 +1,4 @@
+using Api.Application.Helpers;
 using AutoMapper;
 using CrossCutting.DependencyInjection;
 using CrossCutting.Mappings;
@@ -15,15 +16,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 IWebHostEnvironment _envionment = builder.Environment;
-if (_envionment.IsEnvironment("Testing"))
-{
-    Environment.SetEnvironmentVariable("DB_CONNECTION", "Persist Security Info=True;Server=localhost;Port=5432;Database=dbApi_Integration;Uid=postgres;Pwd=masterkey");
-    Environment.SetEnvironmentVariable("DATABASE", "Postgres");
-    Environment.SetEnvironmentVariable("MIGRATION", "APLICAR");
-    Environment.SetEnvironmentVariable("Audience", "ExampleAudience");
-    Environment.SetEnvironmentVariable("Issuer", "ExampleIssuer");
-    Environment.SetEnvironmentVariable("Seconds", "28800");
-}
+// if (_envionment.IsEnvironment("Testing"))
+// {
+//     Environment.SetEnvironmentVariable("DB_CONNECTION", "Persist Security Info=True;Server=localhost;Port=5432;Database=dbApi_Integration;Uid=postgres;Pwd=masterkey");
+//     Environment.SetEnvironmentVariable("DATABASE", "Postgres");
+//     Environment.SetEnvironmentVariable("MIGRATION", "APLICAR");
+//     Environment.SetEnvironmentVariable("Audience", "ExampleAudience");
+//     Environment.SetEnvironmentVariable("Issuer", "ExampleIssuer");
+//     Environment.SetEnvironmentVariable("Seconds", "28800");
+// }
+StartupConfigurationHelper.ConfigureEnvironment(_envionment);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
