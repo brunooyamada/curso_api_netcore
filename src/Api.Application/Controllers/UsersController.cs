@@ -59,6 +59,7 @@ namespace Api.Application.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] UserDtoCreate user)
         {
+            var usuario = User.Identity.Name;  // Pega a identidade do usuário autenticado
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

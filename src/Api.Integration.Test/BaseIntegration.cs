@@ -7,6 +7,8 @@ using Data.Context;
 using Domain.Dtos;
 using Domain.Interfaces.Services.User;
 using Domain.Security;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -14,9 +16,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Service.Services;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace Api.Integration.Test
 {
@@ -34,7 +39,6 @@ namespace Api.Integration.Test
             var connectionString = "Server=localhost;Port=5432;Database=dbApi;Uid=postgres;Pwd=masterkey";
 
             StartupConfigurationHelper.ConfigureEnvironment(new FakeWebHostEnvironment { EnvironmentName = "Testing" });
-
 
             var builder = new WebHostBuilder()
                 .UseEnvironment("Testing")
@@ -59,6 +63,36 @@ namespace Api.Integration.Test
                     ConfigureService.ConfigureDependenciesService(services);
                     ConfigureRepository.ConfigureDependenciesRepository(services);
 
+                    // Authorization
+                    // Configuração de autenticação JWT
+                    var signingConfigurations = new SigningConfigurations();
+                    services.AddSingleton(signingConfigurations);
+
+                    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                        .AddJwtBearer(options =>
+                        {
+                            // Supondo que você tenha as variáveis de ambiente configuradas corretamente para a validação
+                            options.TokenValidationParameters = new TokenValidationParameters
+                            {
+                                ValidateIssuer = true,
+                                ValidateAudience = true,
+                                ValidIssuer = Environment.GetEnvironmentVariable("Issuer"),
+                                ValidAudience = Environment.GetEnvironmentVariable("Audience"),
+                                IssuerSigningKey = signingConfigurations.Key,
+                                ClockSkew = TimeSpan.Zero
+                            };
+                        });
+                    //
+
+                    // Adiciona jwt
+                    services.AddAuthorization(options => 
+                    {
+                        options.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                            .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                            .RequireAuthenticatedUser().Build());
+                    });
+                    //
+
                     // Registre SigningConfigurations no DI
                     services.AddSingleton<SigningConfigurations>();
 
@@ -68,6 +102,7 @@ namespace Api.Integration.Test
                 .Configure(app =>
                 {
                     app.UseRouting();
+                    app.UseAuthentication(); // <- ESSENCIAL
                     app.UseAuthorization();
                     app.UseEndpoints(endpoints =>
                     {

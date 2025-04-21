@@ -16,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 IWebHostEnvironment _envionment = builder.Environment;
+// Movido para helpers/StartupConfigurationHelper
 // if (_envionment.IsEnvironment("Testing"))
 // {
 //     Environment.SetEnvironmentVariable("DB_CONNECTION", "Persist Security Info=True;Server=localhost;Port=5432;Database=dbApi_Integration;Uid=postgres;Pwd=masterkey");
@@ -90,11 +91,12 @@ builder.Services.AddSingleton(mapper);
 var signingConfigurations = new SigningConfigurations();
 builder.Services.AddSingleton(signingConfigurations);
 
-var tokenConfigurations = new TokenConfigurations();
-new ConfigureFromConfigurationOptions<TokenConfigurations>(
-    builder.Configuration.GetSection("TokenConfigurations")
-).Configure(tokenConfigurations);
-builder.Services.AddSingleton(tokenConfigurations);
+// removido para usar variáveis de ambiente
+//var tokenConfigurations = new TokenConfigurations();
+//new ConfigureFromConfigurationOptions<TokenConfigurations>(
+//    builder.Configuration.GetSection("TokenConfigurations")
+//).Configure(tokenConfigurations);
+//builder.Services.AddSingleton(tokenConfigurations);
 
 builder.Services.AddAuthentication(authOptions =>
 {
@@ -104,8 +106,10 @@ builder.Services.AddAuthentication(authOptions =>
 {
     var paramsValidation = bearerOptions.TokenValidationParameters;
     paramsValidation.IssuerSigningKey = signingConfigurations.Key;
-    paramsValidation.ValidAudience = tokenConfigurations.Audience;
-    paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
+    //paramsValidation.ValidAudience = tokenConfigurations.Audience;
+    //paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
+    paramsValidation.ValidAudience = Environment.GetEnvironmentVariable("Audience");
+    paramsValidation.ValidIssuer = Environment.GetEnvironmentVariable("Issuer");
     paramsValidation.ValidateIssuerSigningKey = true;
     paramsValidation.ValidateLifetime = true;
     paramsValidation.ClockSkew = TimeSpan.Zero; // Tempo de toler�ncia para expira��o de um token (utilizado caso haja problemas de sincronismo de hor�rio entre diferentes computadores envolvidos no processo de comunica��o)
