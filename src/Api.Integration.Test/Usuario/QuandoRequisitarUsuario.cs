@@ -1,7 +1,7 @@
 ﻿using Domain.Dtos.User;
 using Newtonsoft.Json;
 using System.Net;
-using Xunit.Sdk;
+using System.Text;
 
 namespace Api.Integration.Test.Usuario
 {
@@ -42,6 +42,25 @@ namespace Api.Integration.Test.Usuario
             Assert.NotNull(listaFromJson);
             Assert.True(listaFromJson.Count() > 0);
             Assert.True(listaFromJson.Where(r => r.Id == registroPost.Id).Count() == 1);
+
+            // Put
+            var updateUserDto = new UserDtoUpdate()
+            {
+                Id = registroPost.Id,
+                Name = Faker.Name.FullName(),
+                Email = Faker.Internet.Email()
+            };
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(updateUserDto),
+                Encoding.UTF8, "application/json");
+
+            response = await client.PutAsync($"{hostApi}users", stringContent);
+            jsonResult = await response.Content.ReadAsStringAsync();
+            var registroAtualizado = JsonConvert.DeserializeObject<UserDtoUpdateResult>(jsonResult);
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.NotEqual(registroPost.Name, registroAtualizado.Name);
+            Assert.NotEqual(registroPost.Email, registroAtualizado.Email);
         }
     }
 }
