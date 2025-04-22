@@ -23,6 +23,8 @@ namespace Api.Integration.Test.Usuario
                 Email = _email
             };
 
+
+            // Post
             var response = await PostJsonAsync(userDto, $"{hostApi}users", client);
             var postResult = await response.Content.ReadAsStringAsync();
             var registroPost = JsonConvert.DeserializeObject<UserDtoCreateResult>(postResult);
@@ -30,6 +32,16 @@ namespace Api.Integration.Test.Usuario
             Assert.Equal(_name, registroPost.Name);
             Assert.Equal(_email, registroPost.Email);
             Assert.False(registroPost.Id == 0);
+
+            // Get All
+            response = await client.GetAsync($"{hostApi}users");
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+            var jsonResult = await response.Content.ReadAsStringAsync();
+            var listaFromJson = JsonConvert.DeserializeObject<IEnumerable<UserDto>>(jsonResult);
+            Assert.NotNull(listaFromJson);
+            Assert.True(listaFromJson.Count() > 0);
+            Assert.True(listaFromJson.Where(r => r.Id == registroPost.Id).Count() == 1);
         }
     }
 }
