@@ -23,9 +23,6 @@ namespace Api.Integration.Test.Usuario
                 Email = _email
             };
 
-            System.Console.WriteLine(client.DefaultRequestHeaders.Authorization);
-            Console.WriteLine("TOKEN: " + client.DefaultRequestHeaders.Authorization);
-            
             var response = await PostJsonAsync(userDto, $"{hostApi}users", client);
             var postResult = await response.Content.ReadAsStringAsync();
             var registroPost = JsonConvert.DeserializeObject<UserDtoCreateResult>(postResult);
