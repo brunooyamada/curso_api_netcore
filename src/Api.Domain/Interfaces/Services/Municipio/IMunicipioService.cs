@@ -1,0 +1,18 @@
+﻿using Domain.Dtos.Municipio;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Domain.Interfaces.Services.Municipio
+{
+    internal interface IMunicipioService
+    {
+        Task<MunicipioDto> Get(long id);
+        Task<MunicipioDtoCompleto> GetcompletebyId(long id);
+        Task<MunicipioDtoCompleto> GetcompletebyIBGE(int codIBGE);
+        Task<IEnumerable<MunicipioDto>> GetAll();
+        Task<MunicipioDtoCreateResult> Post(MunicipioDtoCreate municipio);
+        Task<MunicipioDtoUpdateResult> Put(MunicipioDtoUpdate municipio);
+        Task<bool> Delete(long id);
+    }
+}
