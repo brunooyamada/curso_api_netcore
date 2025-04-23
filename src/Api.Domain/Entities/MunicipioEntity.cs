@@ -1,0 +1,21 @@
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Entities
+{
+    internal class MunicipioEntity : BaseEntity
+    {
+        [Required]
+        [MaxLength(60)]
+        public string Nome { get; set; }
+        public int CodIBGE { get; set; }
+        [Required]
+        public long UfId { get; set; }
+
+        public UfEntity Uf { get; set; }
+
+        public MunicipioEntity Municipio { get; set; }
+
+        public IEnumerable<CepEntity> Ceps { get; set; }
+    }
+}
