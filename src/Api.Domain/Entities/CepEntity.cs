@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
-    internal class CepEntity : BaseEntity
+    public class CepEntity : BaseEntity
     {
         [Required]
         [MaxLength(10)]

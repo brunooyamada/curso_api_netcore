@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
-    internal class UfEntity : BaseEntity
+    public class UfEntity : BaseEntity
     {
         [Required]
         [MaxLength(2)]

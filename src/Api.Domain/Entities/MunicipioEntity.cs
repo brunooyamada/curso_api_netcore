@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
-    internal class MunicipioEntity : BaseEntity
+    public class MunicipioEntity : BaseEntity
     {
         [Required]
         [MaxLength(60)]
