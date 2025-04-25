@@ -1,0 +1,18 @@
+Passo a passo
+Api.Domain
+    1 - Entities (Entidades)
+    2 - Dtos
+    3 - Interfaces
+    4 - Models
+Api.Data
+    1 - Mapping Entities (Mapear as Entitades)
+    2 - MyContext (Atualizar)
+    3 - Fazer Migrações (dotnet ef migrations add NomeDaMigracao)
+    4 - Atualizar o banco de dados (dotnet ef database update)
+    5 - Implementations (Implementação da Classe BaseEntity)
+        5.1 - Api.Domain.Repository
+        5.2 - Api.Data.Implementations
+
+Data.Test
+    1 - Testes de todos os Métodos da BaseRepository
+    2 - Testes de todos os Métodos da Implementations
