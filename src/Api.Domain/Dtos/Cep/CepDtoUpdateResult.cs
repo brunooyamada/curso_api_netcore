@@ -2,7 +2,7 @@
 
 namespace Domain.Dtos.Cep
 {
-    internal class CepDtoUpdateResult
+    public class CepDtoUpdateResult
     {
         public long Id { get; set; }
         public string Cep { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Domain.Models
 {
-    internal class UfModel : BaseModel
+    public class UfModel : BaseModel
     {
 		private string _sigla;
 

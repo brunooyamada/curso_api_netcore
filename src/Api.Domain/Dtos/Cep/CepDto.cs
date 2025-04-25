@@ -2,7 +2,7 @@
 
 namespace Domain.Dtos.Cep
 {
-    internal class CepDto
+    public class CepDto
     {
         public long Id { get; set; }
         public string Cep { get; set; }

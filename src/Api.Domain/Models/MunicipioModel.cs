@@ -1,6 +1,6 @@
 ﻿namespace Domain.Models
 {
-    internal class MunicipioModel : BaseModel
+    public class MunicipioModel : BaseModel
     {
 		private string _nome;
 

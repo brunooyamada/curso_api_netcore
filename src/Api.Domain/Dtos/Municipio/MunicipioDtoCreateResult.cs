@@ -2,7 +2,7 @@
 
 namespace Domain.Dtos.Municipio
 {
-    internal class MunicipioDtoCreateResult
+    public class MunicipioDtoCreateResult
     {
         public long Id { get; set; }
         public string Nome { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Domain.Models
 {
-    internal class CepModel : BaseModel
+    public class CepModel : BaseModel
     {
 		private string _cep;
 

@@ -2,7 +2,7 @@
 
 namespace Domain.Dtos.Municipio
 {
-    internal class MunicipioDtoUpdate
+    public class MunicipioDtoUpdate
     {
         [Required(ErrorMessage = "Id de Município é campo obrigatório")]
         public long Id { get; set; }

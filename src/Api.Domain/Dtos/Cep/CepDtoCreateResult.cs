@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Dtos.Cep
 {
-    internal class CepDtoCreateResult
+    public class CepDtoCreateResult
     {
         public long Id { get; set; }
         public string Cep { get; set; }

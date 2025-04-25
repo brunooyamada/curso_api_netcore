@@ -1,6 +1,6 @@
 ﻿namespace Domain.Dtos.Uf
 {
-    internal class UfDto
+    public class UfDto
     {
         public long Id { get; set; }
         public string Sigla { get; set; }

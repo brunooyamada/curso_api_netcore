@@ -2,7 +2,7 @@
 
 namespace Domain.Dtos.Cep
 {
-    internal class CepDtoUpdate
+    public class CepDtoUpdate
     {
         [Required(ErrorMessage = "Id é campo obrigatório")]
         public long Id { get; set; }

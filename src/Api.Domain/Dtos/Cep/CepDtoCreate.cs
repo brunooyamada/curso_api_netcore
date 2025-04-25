@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Dtos.Cep
 {
-    internal class CepDtoCreate
+    public class CepDtoCreate
     {
         [Required(ErrorMessage = "CEP é campo obrigatório")]
         public string Cep { get; set; }

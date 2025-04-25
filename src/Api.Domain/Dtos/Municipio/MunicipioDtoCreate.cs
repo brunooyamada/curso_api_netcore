@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Dtos.Municipio
 {
-    internal class MunicipioDtoCreate
+    public class MunicipioDtoCreate
     {
         [Required(ErrorMessage = "Nome de Município é campo obrigatório")]
         [StringLength(60, ErrorMessage = "Nome de Município deve ter no máximo {1} caracteres.")]

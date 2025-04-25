@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces.Services.Cep
 {
-    internal interface ICepService
+    public interface ICepService
     {
         Task<CepDto> Get(long id);
         Task<CepDto> Get(string cep);

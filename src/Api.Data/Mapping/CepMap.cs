@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Data.Mapping
 {
-    internal class CepMap : IEntityTypeConfiguration<CepEntity>
+    public class CepMap : IEntityTypeConfiguration<CepEntity>
     {
         public void Configure(EntityTypeBuilder<CepEntity> builder)
         {

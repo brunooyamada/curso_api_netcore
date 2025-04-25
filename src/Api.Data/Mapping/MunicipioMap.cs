@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Data.Mapping
 {
-    internal class MunicipioMap : IEntityTypeConfiguration<MunicipioEntity>
+    public class MunicipioMap : IEntityTypeConfiguration<MunicipioEntity>
     {
         public void Configure(EntityTypeBuilder<MunicipioEntity> builder)
         {

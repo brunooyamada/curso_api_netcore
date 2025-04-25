@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces.Services.Municipio
 {
-    internal interface IMunicipioService
+    public interface IMunicipioService
     {
         Task<MunicipioDto> Get(long id);
         Task<MunicipioDtoCompleto> GetcompletebyId(long id);

@@ -14,8 +14,6 @@ namespace Domain.Entities
 
         public UfEntity Uf { get; set; }
 
-        public MunicipioEntity Municipio { get; set; }
-
         public IEnumerable<CepEntity> Ceps { get; set; }
     }
 }
