@@ -16,3 +16,14 @@ Api.Data
 Data.Test
     1 - Testes de todos os Métodos da BaseRepository
     2 - Testes de todos os Métodos da Implementations
+
+Api.CrossCutting
+    1 - DtoToModelProfile
+    2 - EntityToDtoProfile
+    3 - ModelToDtoProfile
+
+Api.Service
+    1 - Criar Services
+
+Api.Service.Test
+    1 - Testes de AutoMapper
