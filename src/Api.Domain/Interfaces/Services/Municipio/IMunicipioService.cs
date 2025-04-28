@@ -8,8 +8,8 @@ namespace Domain.Interfaces.Services.Municipio
     public interface IMunicipioService
     {
         Task<MunicipioDto> Get(long id);
-        Task<MunicipioDtoCompleto> GetcompletebyId(long id);
-        Task<MunicipioDtoCompleto> GetcompletebyIBGE(int codIBGE);
+        Task<MunicipioDtoCompleto> GetCompleteById(long id);
+        Task<MunicipioDtoCompleto> GetCompletebyIBGE(int codIBGE);
         Task<IEnumerable<MunicipioDto>> GetAll();
         Task<MunicipioDtoCreateResult> Post(MunicipioDtoCreate municipio);
         Task<MunicipioDtoUpdateResult> Put(MunicipioDtoUpdate municipio);
