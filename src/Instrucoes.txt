@@ -28,3 +28,10 @@ Api.Service
 Api.Service.Test
     1 - Testes de AutoMapper
     2 - Testes de Services com Mock de Service (Retornando repositorio Faker)
+
+Api.CrossCutting
+    1 - Configure Repository
+    2 - Configure Services
+
+Api.Application
+    1 - Controllers

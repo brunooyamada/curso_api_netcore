@@ -26,7 +26,16 @@ IWebHostEnvironment _envionment = builder.Environment;
 //     Environment.SetEnvironmentVariable("Issuer", "ExampleIssuer");
 //     Environment.SetEnvironmentVariable("Seconds", "28800");
 // }
-StartupConfigurationHelper.ConfigureEnvironment(_envionment);
+
+#region Appsettings
+var tokenConfigurations = new TokenConfigurations();
+new ConfigureFromConfigurationOptions<TokenConfigurations>(
+    builder.Configuration.GetSection("TokenConfigurations")
+).Configure(tokenConfigurations);
+builder.Services.AddSingleton(tokenConfigurations);
+#endregion
+
+StartupConfigurationHelper.ConfigureEnvironment(_envionment, tokenConfigurations);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

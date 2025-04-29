@@ -15,6 +15,10 @@ namespace CrossCutting.DependencyInjection
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
 
+            serviceCollection.AddScoped<IUfRepository, UfImplementation>();
+            serviceCollection.AddScoped<IMunicipioRepository, MunicipioImplementation>();
+            serviceCollection.AddScoped<ICepRepository, CepImplementation>();
+
             var banco = Environment.GetEnvironmentVariable("DATABASE")?.ToLower() ?? "";
             var conexao = Environment.GetEnvironmentVariable("DB_CONNECTION") ?? "Server=localhost;Port=5432;Database=dbApi;Uid=postgres;Pwd=masterkey";
 
