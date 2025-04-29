@@ -1,5 +1,6 @@
 ﻿using Domain.Dtos.Cep;
 using Domain.Dtos.Municipio;
+using Domain.Dtos.Uf;
 
 namespace Api.Service.Test.Cep
 {
@@ -52,7 +53,7 @@ namespace Api.Service.Test.Cep
                         Nome = Faker.Address.City(),
                         CodIBGE = Faker.RandomNumber.Next(1, 100000),
                         UfId = Faker.RandomNumber.Next(1, 27),
-                        Uf = new Domain.Dtos.Uf.UfDto
+                        Uf = new UfDto
                         {
                             Id = Faker.RandomNumber.Next(1, 27),
                             Nome = Faker.Address.UsState(),

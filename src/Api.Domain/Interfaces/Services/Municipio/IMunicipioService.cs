@@ -9,7 +9,7 @@ namespace Domain.Interfaces.Services.Municipio
     {
         Task<MunicipioDto> Get(long id);
         Task<MunicipioDtoCompleto> GetCompleteById(long id);
-        Task<MunicipioDtoCompleto> GetCompletebyIBGE(int codIBGE);
+        Task<MunicipioDtoCompleto> GetCompleteByIBGE(int codIBGE);
         Task<IEnumerable<MunicipioDto>> GetAll();
         Task<MunicipioDtoCreateResult> Post(MunicipioDtoCreate municipio);
         Task<MunicipioDtoUpdateResult> Put(MunicipioDtoUpdate municipio);

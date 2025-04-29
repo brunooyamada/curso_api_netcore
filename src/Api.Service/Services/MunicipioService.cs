@@ -26,13 +26,13 @@ namespace Service.Services
 
         public async Task<MunicipioDtoCompleto> GetCompleteById(long id)
         {
-            var entity = await _repository.GetCompletebyId(id);
+            var entity = await _repository.GetCompleteById(id);
             return _mapper.Map<MunicipioDtoCompleto>(entity);
         }
 
-        public async Task<MunicipioDtoCompleto> GetCompletebyIBGE(int codIBGE)
+        public async Task<MunicipioDtoCompleto> GetCompleteByIBGE(int codIBGE)
         {
-            var entity = await _repository.GetCompletebyIBGE(codIBGE);
+            var entity = await _repository.GetCompleteByIBGE(codIBGE);
             return _mapper.Map<MunicipioDtoCompleto>(entity);
         }
 

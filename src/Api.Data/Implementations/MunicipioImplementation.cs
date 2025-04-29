@@ -15,13 +15,13 @@ namespace Data.Implementations
             _dataSet = context.Set<MunicipioEntity>();
         }
 
-        public async Task<MunicipioEntity> GetCompletebyIBGE(int codIBGE)
+        public async Task<MunicipioEntity> GetCompleteByIBGE(int codIBGE)
         {
             return await _dataSet.Include(m => m.Uf)
                 .FirstOrDefaultAsync(m => m.CodIBGE.Equals(codIBGE));
         }
 
-        public async Task<MunicipioEntity> GetCompletebyId(long id)
+        public async Task<MunicipioEntity> GetCompleteById(long id)
         {
             return await _dataSet.Include(m => m.Uf)
                 .FirstOrDefaultAsync(m => m.Id.Equals(id));
