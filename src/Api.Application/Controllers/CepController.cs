@@ -42,6 +42,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("byCep/{cep}")]
         public async Task<ActionResult> Get(string cep)
