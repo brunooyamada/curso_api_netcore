@@ -1,5 +1,5 @@
-﻿using Domain.Dtos.Municipio;
-using Domain.Interfaces.Services.Municipio;
+﻿using Domain.Dtos.Cep;
+using Domain.Interfaces.Services.Cep;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -9,35 +9,17 @@ namespace Api.Application.Controllers
     [Authorize("Bearer")]
     [Route("api/[controller]")]
     [ApiController]
-    public class MunicipiosController : ControllerBase
+    public class CepController : ControllerBase
     {
-        public IMunicipioService _service;
+        public ICepService _service;
 
-        public MunicipiosController(IMunicipioService service)
+        public CepController(ICepService service)
         {
             _service = service;
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAll()
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                return Ok(await _service.GetAll());
-            }
-            catch(ArgumentException e)
-            {
-                return StatusCode((int) HttpStatusCode.InternalServerError, e.Message);
-            }
-        }
-
-        [HttpGet]
-        [Route("{id}", Name = "GetMunicpioWithId")]
+        [Route("{id}", Name = "GetCepWithId")]
         public async Task<ActionResult> Get(long id)
         {
             if (!ModelState.IsValid)
@@ -52,32 +34,6 @@ namespace Api.Application.Controllers
                 {
                     return NotFound("Registro não encontrado");
                 }
-
-                return Ok(result);
-            }
-            catch(ArgumentException e)
-            {
-                return StatusCode((int) HttpStatusCode.InternalServerError, e.Message);
-            }
-        }
-
-        [HttpGet]
-        [Route("Complete/{idMunicipio}")]
-        public async Task<ActionResult> GetCompleteById(long idMunicipio)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                var result = await _service.GetCompleteById(idMunicipio);
-                if (result == null)
-                {
-                    return NotFound("Registro não encontrado");
-                }
-
                 return Ok(result);
             }
             catch (ArgumentException e)
@@ -87,8 +43,8 @@ namespace Api.Application.Controllers
         }
 
         [HttpGet]
-        [Route("byIBGE/{codigoIBGE}")]
-        public async Task<ActionResult> GetCompleteByIBGE(int codigoIBGE)
+        [Route("byCep/{cep}")]
+        public async Task<ActionResult> Get(string cep)
         {
             if (!ModelState.IsValid)
             {
@@ -97,12 +53,11 @@ namespace Api.Application.Controllers
 
             try
             {
-                var result = await _service.GetCompleteByIBGE(codigoIBGE);
+                var result = await _service.Get(cep);
                 if (result == null)
                 {
                     return NotFound("Registro não encontrado");
                 }
-
                 return Ok(result);
             }
             catch (ArgumentException e)
@@ -112,25 +67,23 @@ namespace Api.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] MunicipioDtoCreate municipio)
+        public async Task<ActionResult> Post([FromBody] CepDtoCreate cep)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
             try
             {
-                var result = await _service.Post(municipio);
+                var result = await _service.Post(cep);
                 if (result != null)
                 {
-                    return Created(new Uri(Url.Link("GetMunicpioWithId", new { id = result.Id })), result);
+                    return Created(new Uri(Url.Link("GetCepWithId", new { id = result.Id })), result);
                 }
-                else
+                else 
                 {
-                    return BadRequest();
+                    return NotFound("Registro não encontrado");
                 }
-                
             }
             catch (ArgumentException e)
             {
@@ -139,7 +92,30 @@ namespace Api.Application.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] MunicipioDtoUpdate municipio)
+        public async Task<ActionResult> Put([FromBody] CepDtoUpdate cep)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _service.Put(cep);
+                if (result == null)
+                {
+                    return NotFound("Registro não encontrado");
+                }
+
+                return Ok(result);
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(long id)
         {
             if (!ModelState.IsValid)
             {
@@ -148,18 +124,9 @@ namespace Api.Application.Controllers
 
             try
             {
-                var result = await _service.Put(municipio);
-                if (result != null)
-                {
-                    return Created(new Uri(Url.Link("GetMunicpioWithId", new { id = result.Id })), result);
-                }
-                else
-                {
-                    return BadRequest();
-                }
-
+                return Ok(await _service.Delete(id));
             }
-            catch (ArgumentException e)
+            catch(ArgumentException e)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }

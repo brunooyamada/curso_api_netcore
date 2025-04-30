@@ -38,7 +38,7 @@ namespace Api.Integration.Test
 
             var connectionString = "Server=localhost;Port=5432;Database=dbApi;Uid=postgres;Pwd=masterkey";
 
-            StartupConfigurationHelper.ConfigureEnvironment(new FakeWebHostEnvironment { EnvironmentName = "Testing" });
+            StartupConfigurationHelper.ConfigureEnvironment(new FakeWebHostEnvironment { EnvironmentName = "Testing" }, null);
 
             var builder = new WebHostBuilder()
                 .UseEnvironment("Testing")
