@@ -151,13 +151,30 @@ namespace Api.Application.Controllers
                 var result = await _service.Put(municipio);
                 if (result != null)
                 {
-                    return Created(new Uri(Url.Link("GetMunicpioWithId", new { id = result.Id })), result);
+                    return Ok(result);
                 }
                 else
                 {
                     return BadRequest();
                 }
 
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> Delete(long id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                return Ok(await _service.Delete(id));
             }
             catch (ArgumentException e)
             {
