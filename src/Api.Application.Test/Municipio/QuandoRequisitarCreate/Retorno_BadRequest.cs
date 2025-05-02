@@ -6,7 +6,7 @@ using Moq;
 
 namespace Api.Application.Test.Municipio.QuandoRequisitarCreate
 {
-    public class RetornoBadRequest
+    public class Retorno_BadRequest
     {
         private MunicipiosController _controller;
 
