@@ -165,7 +165,7 @@ namespace Api.Application.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(long id)
         {
             if (!ModelState.IsValid)
