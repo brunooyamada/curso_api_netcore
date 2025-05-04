@@ -17,6 +17,7 @@ Data.Test
     1 - Testes de todos os Métodos da BaseRepository
     2 - Testes de todos os Métodos da Implementations
 
+-----------------------------------------------------------------
 Api.CrossCutting
     1 - DtoToModelProfile
     2 - EntityToDtoProfile
@@ -29,9 +30,19 @@ Api.Service.Test
     1 - Testes de AutoMapper
     2 - Testes de Services com Mock de Service (Retornando repositorio Faker)
 
+----------------------------------------------------------------
+
 Api.CrossCutting
     1 - Configure Repository
     2 - Configure Services
 
 Api.Application
     1 - Controllers
+
+Api.Application.Test
+    1 - Teste de Todos os métodos e Retorno das Controllers
+
+----------------------------------------------------------------
+
+Api.Integration.Test
+    1 - Testar todos os requisitos
