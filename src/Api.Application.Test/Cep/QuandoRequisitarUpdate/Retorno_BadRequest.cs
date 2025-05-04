@@ -8,7 +8,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarUpdate
 {
     public class Retorno_BadRequest
     {
-        private CepController _controller;
+        private CepsController _controller;
 
         [Fact(DisplayName = "É possível realizar o Update BadRequest")]
         public async Task E_Possivel_Realizar_Update_BadRequest()
@@ -26,7 +26,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarUpdate
                 }
             );
 
-            _controller = new CepController(serviceMock.Object);
+            _controller = new CepsController(serviceMock.Object);
             _controller.ModelState.AddModelError("Cep", "É um campo obrigatório");
 
             Mock<IUrlHelper> url = new Mock<IUrlHelper>();

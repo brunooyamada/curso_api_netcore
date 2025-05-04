@@ -8,7 +8,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarCreate
 {
     public class Retorno_Created
     {
-        private CepController _controller;
+        private CepsController _controller;
 
         [Fact(DisplayName = "É possível realizar o Create")]
         public async Task E_Possivel_Invocar_a_Controller_Create()
@@ -25,7 +25,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarCreate
                 }
             );
 
-            _controller = new CepController(serviceMock.Object);
+            _controller = new CepsController(serviceMock.Object);
             
             Mock<IUrlHelper> url = new Mock<IUrlHelper>();
             url.Setup(u => u.Link(It.IsAny<string>(), It.IsAny<object>())).Returns("http://localhost:5000");

@@ -7,7 +7,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarDelete
 {
     public class Retorno_Deleted
     {
-        private CepController _controller;
+        private CepsController _controller;
 
         [Fact(DisplayName = "É possível realizar o Delete")]
         public async Task E_Possivel_Realizar_Delete()
@@ -15,7 +15,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarDelete
             var serviceMock = new Mock<ICepService>();
             serviceMock.Setup(m => m.Delete(It.IsAny<long>())).ReturnsAsync(true);
 
-            _controller = new CepController(serviceMock.Object);
+            _controller = new CepsController(serviceMock.Object);
 
             var result = await _controller.Delete(1);
             Assert.True(result is OkObjectResult);

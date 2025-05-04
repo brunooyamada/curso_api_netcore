@@ -8,7 +8,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarUpdate
 {
     public class Retorno_Ok
     {
-        private CepController _controller;
+        private CepsController _controller;
 
         [Fact(DisplayName = "É possível realizar o Update")]
         public async Task E_Possivel_Realizar_Update()
@@ -26,7 +26,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarUpdate
                 }
             );
 
-            _controller = new CepController(serviceMock.Object);
+            _controller = new CepsController(serviceMock.Object);
 
             Mock<IUrlHelper> url = new Mock<IUrlHelper>();
             url.Setup(u => u.Link(It.IsAny<string>(), It.IsAny<object>())).Returns("http://localhost:5000");

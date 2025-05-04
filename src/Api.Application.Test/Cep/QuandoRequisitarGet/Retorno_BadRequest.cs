@@ -8,7 +8,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarGet
 {
     public class Retorno_BadRequest
     {
-        private CepController _controller;
+        private CepsController _controller;
 
         [Fact(DisplayName = "É possível realizar o Get")]
         public async Task E_Possivel_Realizar_Get()
@@ -25,7 +25,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarGet
                }
             );
 
-            _controller = new CepController(serviceMock.Object);
+            _controller = new CepsController(serviceMock.Object);
             _controller.ModelState.AddModelError("Cep", "É um campo obrigatório");
 
             var result = await _controller.Get(1);
@@ -47,7 +47,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarGet
                }
             );
 
-            _controller = new CepController(serviceMock.Object);
+            _controller = new CepsController(serviceMock.Object);
             _controller.ModelState.AddModelError("Cep", "É um campo obrigatório");
 
             var result = await _controller.Get("123");

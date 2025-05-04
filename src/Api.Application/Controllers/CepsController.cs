@@ -9,11 +9,11 @@ namespace Api.Application.Controllers
     [Authorize("Bearer")]
     [Route("api/[controller]")]
     [ApiController]
-    public class CepController : ControllerBase
+    public class CepsController : ControllerBase
     {
         public ICepService _service;
 
-        public CepController(ICepService service)
+        public CepsController(ICepService service)
         {
             _service = service;
         }

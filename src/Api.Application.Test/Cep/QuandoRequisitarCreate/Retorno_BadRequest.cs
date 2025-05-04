@@ -8,7 +8,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarCreate
 {
     public class Retorno_BadRequest
     {
-        private CepController _controller;
+        private CepsController _controller;
 
         [Fact(DisplayName = "É possível realizar o Create BadRequest")]
         public async Task E_Possivel_Invocar_a_Controller_BadRequest()
@@ -25,7 +25,7 @@ namespace Api.Application.Test.Cep.QuandoRequisitarCreate
                 }
             );
 
-            _controller = new CepController(serviceMock.Object);
+            _controller = new CepsController(serviceMock.Object);
             _controller.ModelState.AddModelError("Cep", "É um campo obrigatório");
 
             Mock<IUrlHelper> url = new Mock<IUrlHelper>();
