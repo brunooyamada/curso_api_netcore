@@ -20,6 +20,7 @@ namespace Api.Integration.Test.Uf
             Assert.True(listaFromJson.Count() == 27);
             Assert.True(listaFromJson.Where(r => r.Sigla == "SP").Count() == 1);
 
+            // Get por Id
             var id = listaFromJson.Where(r => r.Sigla == "SP").FirstOrDefault().Id;
             response = await client.GetAsync($"{hostApi}ufs/{id}");
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -29,6 +30,14 @@ namespace Api.Integration.Test.Uf
             Assert.NotNull(registroSelecionado);
             Assert.Equal("São Paulo", registroSelecionado.Nome);
             Assert.Equal("SP", registroSelecionado.Sigla);
+
+            // Get Por Sigla
+            response = await client.GetAsync($"{hostApi}ufs/PorSigla/SP");
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            jsonResult = await response.Content.ReadAsStringAsync();
+            var registroSelecionadoPorSigla = JsonConvert.DeserializeObject<UfDto>(jsonResult);
+            Assert.NotNull(registroSelecionadoPorSigla);
+            Assert.Equal(registroSelecionadoPorSigla.Sigla, "SP");
         }
     }
 }

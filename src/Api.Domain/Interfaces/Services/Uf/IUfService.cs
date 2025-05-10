@@ -8,5 +8,6 @@ namespace Domain.Interfaces.Services.Uf
     {
         Task<UfDto> Get(long id);
         Task<IEnumerable<UfDto>> GetAll();
+        Task<UfDto> GetPorSigla(string sigla);
     }
 }

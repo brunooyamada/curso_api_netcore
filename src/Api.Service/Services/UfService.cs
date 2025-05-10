@@ -27,5 +27,11 @@ namespace Service.Services
             var listEntity = await _repository.SelectAsync();
             return _mapper.Map<IEnumerable<UfDto>>(listEntity);
         }
+
+        public async Task<UfDto> GetPorSigla(string sigla)
+        {
+            var entity = await _repository.GetPorSigla(sigla.ToUpper());
+            return _mapper.Map<UfDto>(entity);
+        }
     }
 }

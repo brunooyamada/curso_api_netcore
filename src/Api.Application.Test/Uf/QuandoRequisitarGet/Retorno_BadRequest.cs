@@ -31,5 +31,26 @@ namespace Api.Application.Test.Uf.QuandoRequisitarGet
             Assert.True(result is BadRequestObjectResult);
         }
 
+        [Fact(DisplayName = "É possível realizar o Get Por Sigla")]
+        public async Task Get_Por_Sigla()
+        {
+            var serviceMock = new Mock<IUfService>();
+
+            serviceMock.Setup(m => m.GetPorSigla(It.IsAny<string>()))
+                .ReturnsAsync(new UfDto
+                {
+                    Id = 1,
+                    Nome = "São Paulo",
+                    Sigla = "SP"
+                }
+            );
+
+            _controller = new UfsController(serviceMock.Object);
+            _controller.ModelState.AddModelError("Sigla", "Formato inválido");
+
+            var result = await _controller.GetPorSigla("xx");
+            Assert.True(result is BadRequestObjectResult);
+        }
+
     }
 }
