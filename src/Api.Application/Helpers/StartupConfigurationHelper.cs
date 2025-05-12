@@ -21,7 +21,7 @@ namespace Api.Application.Helpers
             }
             else
             {
-                Environment.SetEnvironmentVariable("DB_CONNECTION", "Persist Security Info=True;Server=localhost;Port=5432;Database=dbApi_Integration;Uid=postgres;Pwd=masterkey");
+                Environment.SetEnvironmentVariable("DB_CONNECTION", "Persist Security Info=True;Server=localhost;Port=5432;Database=dbApi;Uid=postgres;Pwd=masterkey");
                 Environment.SetEnvironmentVariable("DATABASE", "Postgres");
                 Environment.SetEnvironmentVariable("MIGRATION", "APLICAR");
                 Environment.SetEnvironmentVariable("Audience", tokenConfigurations.Audience);
