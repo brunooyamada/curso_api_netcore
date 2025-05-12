@@ -28,5 +28,17 @@ namespace Api.Service.Test.Uf
             var record = await _service.Get(IdUf);
             Assert.Null(record);
         }
+
+        [Fact(DisplayName = "É possível executar o método GetPorSigla")]
+        public async Task Get_PorSigla()
+        {
+            _serviceMock = new Mock<IUfService>();
+            _serviceMock.Setup(m => m.GetPorSigla(Sigla)).ReturnsAsync(ufDto);
+            _service = _serviceMock.Object;
+
+            var result = await _service.GetPorSigla(Sigla);
+            Assert.NotNull(result);
+            Assert.True(result.Sigla == Sigla);
+        }
     }
 }

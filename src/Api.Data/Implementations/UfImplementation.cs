@@ -15,5 +15,11 @@ namespace Data.Implementations
             _dataSet = context.Set<UfEntity>();
 
         }
+
+        public Task<UfEntity> GetPorSigla(string sigla)
+        {
+            return _dataSet
+                .FirstOrDefaultAsync(x => x.Sigla == sigla);
+        }
     }
 }

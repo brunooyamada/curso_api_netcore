@@ -22,5 +22,18 @@ namespace Api.Application.Test.Uf.QuandoRequisitarGet
             var result = await _controller.Get(1);
             Assert.True(result is NotFoundResult);
         }
+
+        [Fact(DisplayName = "É possível realizar o Get Por Sigla")]
+        public async Task Get_Por_Sigla()
+        {
+            var serviceMock = new Mock<IUfService>();
+
+            serviceMock.Setup(m => m.GetPorSigla(It.IsAny<string>())).Returns(Task.FromResult((UfDto)null));
+
+            _controller = new UfsController(serviceMock.Object);
+
+            var result = await _controller.GetPorSigla("xx");
+            Assert.True(result is NotFoundResult);
+        }
     }
 }

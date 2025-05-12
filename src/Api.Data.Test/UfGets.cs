@@ -42,5 +42,18 @@ namespace Api.Data.Test
                 Assert.True(_todosRegistros.Count() == 27);
             }
         }
+
+        [Fact(DisplayName = "GetPorSigla de UF")]
+        public async Task Get_Por_Sigla()
+        {
+            using (var context = _serviceProvider.GetService<MyContext>())
+            {
+                UfImplementation _repositorio = new UfImplementation(context);
+                var _registroSelecionado = await _repositorio.GetPorSigla("SP");
+                Assert.NotNull(_registroSelecionado);
+                Assert.Equal("SP", _registroSelecionado.Sigla);
+                Assert.Equal("São Paulo", _registroSelecionado.Nome);
+            }
+        }
     }
 }
