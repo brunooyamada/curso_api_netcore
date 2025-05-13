@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Domain.Dtos.Municipio;
+using Domain.Dtos.ViaCep;
 using Domain.Entities;
 using Domain.Interfaces.Services.Municipio;
 using Domain.Models;
 using Domain.Repository;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Service.Services
 {
@@ -63,6 +65,26 @@ namespace Service.Services
         public async Task<bool> Delete(long id)
         {
             return await _repository.DeleteAsync(id);
+        }
+
+        public async Task<MunicipioDtoCompleto> GetOrCreateMunicipio(ViaCepDto viaCepDto, long ufId)
+        {
+            var entity = await _repository.GetCompleteByIBGE(int.Parse(viaCepDto.Ibge)); 
+            if (entity != null)
+            {
+                return _mapper.Map<MunicipioDtoCompleto>(entity);
+            }
+
+            var newMunicipio = await this.Post(new MunicipioDtoCreate
+            {
+                Nome = viaCepDto.Localidade,
+                CodIBGE = int.Parse(viaCepDto.Ibge),
+                UfId = ufId
+            });
+
+            var municipioCompleto = await _repository.GetCompleteById(newMunicipio.Id);
+
+            return _mapper.Map<MunicipioDtoCompleto>(municipioCompleto);
         }
     }
 }

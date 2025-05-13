@@ -73,7 +73,7 @@ namespace Service.Services
             var uf = await _ufService.GetPorSigla(viaCepDto.Uf)
                      ?? throw new ArgumentException("UF não encontrada");
 
-            var municipio = await GetOrCreateMunicipio(viaCepDto, uf.Id);
+            var municipio = await _municipioService.GetOrCreateMunicipio(viaCepDto, uf.Id);
 
             var newEntity = new CepEntity
             {
@@ -98,21 +98,5 @@ namespace Service.Services
                 : JsonConvert.DeserializeObject<ViaCepDto>(response.Content);
         }
 
-        private async Task<MunicipioDtoCompleto> GetOrCreateMunicipio(ViaCepDto viaCepDto, long ufId)
-        {
-            var municipio = await _municipioService.GetCompleteByIBGE(int.Parse(viaCepDto.Ibge));
-            if (municipio != null) return municipio;
-
-            var newMunicipio = await _municipioService.Post(new MunicipioDtoCreate
-            {
-                Nome = viaCepDto.Localidade,
-                CodIBGE = int.Parse(viaCepDto.Ibge),
-                UfId = ufId
-            });
-
-            var municipioCompleto = await _municipioService.GetCompleteById(newMunicipio.Id);
-
-            return _mapper.Map<MunicipioDtoCompleto>(municipioCompleto);
-        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Domain.Dtos.Municipio;
 using Domain.Dtos.Uf;
+using Domain.Dtos.ViaCep;
 
 namespace Api.Service.Test.Municipio
 {
@@ -19,6 +20,7 @@ namespace Api.Service.Test.Municipio
         public MunicipioDtoCreateResult municipioDtoCreateResult;
         public MunicipioDtoUpdate municipioDtoUpdate;
         public MunicipioDtoUpdateResult municipioDtoUpdateResult;
+        public ViaCepDto viaCepDto;
 
         public MunicipioTestes()
         {
@@ -95,6 +97,20 @@ namespace Api.Service.Test.Municipio
                 CodIBGE = CodigoIBGEMunicipioAlterado,
                 UfId = IdUf,
                 UpdateAt = DateTime.UtcNow,
+            };
+
+            viaCepDto = new ViaCepDto()
+            {
+                Cep = "12345678",
+                Logradouro = "Rua Teste",
+                Complemento = "Apto 101",
+                Bairro = "Bairro Teste",
+                Localidade = NomeMunicipio,
+                Uf = "SP",
+                Ibge = CodigoIBGEMunicipio.ToString(),
+                Gia = "1234",
+                Ddd = "11",
+                Siafi = "1234"
             };
         }
     }

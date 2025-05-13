@@ -1,4 +1,5 @@
 ﻿using Domain.Dtos.Municipio;
+using Domain.Dtos.ViaCep;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,5 +15,6 @@ namespace Domain.Interfaces.Services.Municipio
         Task<MunicipioDtoCreateResult> Post(MunicipioDtoCreate municipio);
         Task<MunicipioDtoUpdateResult> Put(MunicipioDtoUpdate municipio);
         Task<bool> Delete(long id);
+        Task<MunicipioDtoCompleto> GetOrCreateMunicipio(ViaCepDto viaCepDto, long ufId);
     }
 }
