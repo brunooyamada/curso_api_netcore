@@ -67,6 +67,28 @@ namespace Api.Application.Controllers
             }
         }
 
+        [HttpPost("Buscar/{cep}")]
+        public async Task<ActionResult> Buscar(string cep)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _service.GetByApi(cep);
+                if (result == null)
+                {
+                    return NotFound("Registro não encontrado");
+                }
+                return Ok(result);
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CepDtoCreate cep)
         {

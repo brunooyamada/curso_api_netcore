@@ -102,6 +102,16 @@ namespace Api.Integration.Test.Cep
             Assert.Equal(updateCepDto.MunicipioId, registroSelecionado.MunicipioId);
             #endregion
 
+            // Get por Api
+            #region Get por Api
+            response = await PostJsonAsync(cepDto, $"{hostApi}ceps/Buscar/{registroSelecionado.Cep}", client);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            jsonResult = await response.Content.ReadAsStringAsync();
+            var registroSelecionadoApi = JsonConvert.DeserializeObject<CepDto>(jsonResult);
+            Assert.NotNull(registroSelecionadoApi);
+            Assert.Equal(updateCepDto.Cep, registroSelecionadoApi.Cep);
+            #endregion
+
             // DELETE
             #region Delete
             response = await client.DeleteAsync($"{hostApi}ceps/{registroSelecionado.Id}");

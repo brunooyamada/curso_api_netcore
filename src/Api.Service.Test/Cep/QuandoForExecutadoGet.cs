@@ -52,5 +52,18 @@ namespace Api.Service.Test.Cep
             result = await _service.Get(IdCep);
             Assert.Null(result);
         }
+
+        [Fact(DisplayName = "É possível executar o método GetByApi")]
+        public async Task TesteGetById()
+        {
+            _serviceMock = new Mock<ICepService>();
+            _serviceMock.Setup(m => m.GetByApi(Cep)).ReturnsAsync(cepDto);
+            _service = _serviceMock.Object;
+
+            var result = await _service.GetByApi(Cep);
+            Assert.NotNull(result);
+            Assert.True(result.Id == IdCep);
+        }
+
     }
 }

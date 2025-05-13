@@ -43,5 +43,40 @@ namespace Api.Application.Test.Cep.QuandoRequisitarCreate
             var result = await _controller.Post(cepDtoCreate);
             Assert.True(result is BadRequestObjectResult);
         }
+
+        [Fact(DisplayName = "É possível realizar o Buscar BadRequest")]
+        public async Task Buscar_BadRequest()
+        {
+            var serviceMock = new Mock<ICepService>();
+            serviceMock.Setup(m => m.GetByApi(It.IsAny<string>())).ReturnsAsync(
+                new CepDto
+                {
+                    Id = 1,
+                    Cep = Faker.Address.ZipCode(),
+                    Logradouro = Faker.Address.StreetName(),
+                    Numero = Faker.RandomNumber.Next(1, 1000).ToString(),
+                    MunicipioId = 1,
+                }
+            );
+
+            _controller = new CepsController(serviceMock.Object);
+            _controller.ModelState.AddModelError("Cep", "É um campo obrigatório");
+
+            Mock<IUrlHelper> url = new Mock<IUrlHelper>();
+            url.Setup(u => u.Link(It.IsAny<string>(), It.IsAny<object>())).Returns("http://localhost:5000");
+            _controller.Url = url.Object;
+
+            var cepDtoCreate = new CepDto
+            {
+                Cep = Faker.Address.ZipCode(),
+                Logradouro = Faker.Address.StreetName(),
+                Numero = Faker.RandomNumber.Next(1, 1000).ToString(),
+                MunicipioId = 1,
+            };
+
+            var result = await _controller.Buscar("");
+            Assert.True(result is BadRequestObjectResult);
+        }
+
     }
 }
