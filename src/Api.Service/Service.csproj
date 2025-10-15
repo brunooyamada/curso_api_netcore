@@ -2,13 +2,13 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="RestSharp" Version="112.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Api.Domain\Domain.csproj" />
-    <ProjectReference Include="..\Api.Data\Data.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
