@@ -22,8 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Api.Application\Api.Application.csproj" />
-    <ProjectReference Include="..\Api.Service\Service.csproj" />
-    <ProjectReference Include="..\Api.Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
