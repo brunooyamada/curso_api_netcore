@@ -32,13 +32,21 @@ namespace Api.Integration.Test
         public IMapper mapper { get; set; }
         public string hostApi { get; set; }
         public HttpResponseMessage response { get; set; }
+        public IConfiguration configuration;
+
         public BaseIntegration()
         {
+            configuration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
+            {
+                {"MinhaSecao:chave1", "valor1" },
+            }).Build();
+
             hostApi = "https://localhost:7201/api/";
 
             var connectionString = "Server=localhost;Port=5432;Database=dbApi;Uid=postgres;Pwd=masterkey";
 
-            StartupConfigurationHelper.ConfigureEnvironment(new FakeWebHostEnvironment { EnvironmentName = "Testing" }, null);
+            var environment = new FakeWebHostEnvironment { EnvironmentName = "Testing" };
+            StartupConfigurationHelper.ConfigureEnvironment(environment, null);
 
             var builder = new WebHostBuilder()
                 .UseEnvironment("Testing")
@@ -49,6 +57,10 @@ namespace Api.Integration.Test
                 })
                 .ConfigureServices(services =>
                 {
+                    services.AddInfrastructure(environment);
+                    services.AddInfrastructureJWT(configuration);
+                    services.AddInfrastructureSwagger(configuration, environment);
+                    
                     services.AddControllers()
                         .AddApplicationPart(typeof(LoginController).Assembly);
 
@@ -59,42 +71,6 @@ namespace Api.Integration.Test
                         cfg.AddProfile(new EntityToDtoProfile());
                         cfg.AddProfile(new ModelToEntityProfile());
                     });
-
-                    ConfigureService.ConfigureDependenciesService(services);
-                    ConfigureRepository.ConfigureDependenciesRepository(services);
-
-                    // Authorization
-                    // Configuração de autenticação JWT
-                    var signingConfigurations = new SigningConfigurations();
-                    services.AddSingleton(signingConfigurations);
-
-                    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                        .AddJwtBearer(options =>
-                        {
-                            // Supondo que você tenha as variáveis de ambiente configuradas corretamente para a validação
-                            options.TokenValidationParameters = new TokenValidationParameters
-                            {
-                                ValidateIssuer = true,
-                                ValidateAudience = true,
-                                ValidIssuer = Environment.GetEnvironmentVariable("Issuer"),
-                                ValidAudience = Environment.GetEnvironmentVariable("Audience"),
-                                IssuerSigningKey = signingConfigurations.Key,
-                                ClockSkew = TimeSpan.Zero
-                            };
-                        });
-                    //
-
-                    // Adiciona jwt
-                    services.AddAuthorization(options => 
-                    {
-                        options.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-                            .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-                            .RequireAuthenticatedUser().Build());
-                    });
-                    //
-
-                    // Registre SigningConfigurations no DI
-                    services.AddSingleton<SigningConfigurations>();
 
                     IMapper mapper = config.CreateMapper();
                     services.AddSingleton(mapper);
