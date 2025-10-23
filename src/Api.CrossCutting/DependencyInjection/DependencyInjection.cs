@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CrossCutting.DependencyInjection
 {
-    public static class DepencyInjection
+    public static class DependencyInjection
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services,
             IWebHostEnvironment environment)
