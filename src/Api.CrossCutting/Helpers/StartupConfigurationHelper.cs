@@ -1,12 +1,10 @@
 using Domain.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace Api.Application.Helpers
 {
-    public class StartupConfigurationHelper
+    public static class StartupConfigurationHelper
     {
         public static void ConfigureEnvironment(IWebHostEnvironment env, TokenConfigurations tokenConfigurations)
         {

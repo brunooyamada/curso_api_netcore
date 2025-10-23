@@ -3,14 +3,16 @@ using Data.Implementations;
 using Data.Repository;
 using Domain.Interfaces;
 using Domain.Repository;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CrossCutting.DependencyInjection
 {
-    public class ConfigureRepository
+    public static class ConfigureRepository
     {
-        public static void ConfigureDependenciesRepository(IServiceCollection serviceCollection)
+        public static IServiceCollection ConfigureDependenciesRepository(this IServiceCollection serviceCollection, 
+            IWebHostEnvironment environment)
         {
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
@@ -37,7 +39,8 @@ namespace CrossCutting.DependencyInjection
                     //options => options.UseSqlServer("Password=masterkey;Persist Security Info=True;User ID=sa;Initial Catalog=dbApi;Data Source=bruno\\sqlexpress;TrustServerCertificate=True")
                 );
             }
-            
+
+            return serviceCollection;
         }
     }
 }

@@ -7,9 +7,9 @@ using Service.Services;
 
 namespace CrossCutting.DependencyInjection
 {
-    public class ConfigureService
+    public static class ConfigureService
     {
-        public static void ConfigureDependenciesService(IServiceCollection serviceCollection)
+        public static IServiceCollection ConfigureDependenciesService(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IUserService, UserService>();
             serviceCollection.AddTransient<ILoginService, LoginService>();
@@ -17,6 +17,8 @@ namespace CrossCutting.DependencyInjection
             serviceCollection.AddTransient<IUfService, UfService>();
             serviceCollection.AddTransient<IMunicipioService, MunicipioService>();
             serviceCollection.AddTransient<ICepService, CepService>();
+
+            return serviceCollection;
         }
     }
 }

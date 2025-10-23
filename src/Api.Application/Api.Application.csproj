@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Api.CrossCutting\CrossCutting.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>
