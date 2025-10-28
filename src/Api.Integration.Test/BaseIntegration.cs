@@ -2,13 +2,8 @@
 using Api.Application.Helpers;
 using AutoMapper;
 using CrossCutting.DependencyInjection;
-using CrossCutting.Mappings;
 using Data.Context;
 using Domain.Dtos;
-using Domain.Interfaces.Services.User;
-using Domain.Security;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -16,12 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
-using Service.Services;
 using System.Net.Http.Headers;
-using System.Text;
 
 namespace Api.Integration.Test
 {
@@ -64,16 +55,6 @@ namespace Api.Integration.Test
                     services.AddControllers()
                         .AddApplicationPart(typeof(LoginController).Assembly);
 
-                    // Mapper manual
-                    var config = new MapperConfiguration(cfg =>
-                    {
-                        cfg.AddProfile(new DtoToModelProfile());
-                        cfg.AddProfile(new EntityToDtoProfile());
-                        cfg.AddProfile(new ModelToEntityProfile());
-                    });
-
-                    IMapper mapper = config.CreateMapper();
-                    services.AddSingleton(mapper);
                 })
                 .Configure(app =>
                 {
@@ -90,8 +71,6 @@ namespace Api.Integration.Test
             var server = new TestServer(builder);
             myContext = server.Host.Services.GetService(typeof(MyContext)) as MyContext;
             myContext.Database.Migrate();
-
-            mapper = new AutoMapperFixture().GetMapper();
 
             client = server.CreateClient();
         }
@@ -123,24 +102,7 @@ namespace Api.Integration.Test
         }
     }
 
-    public class AutoMapperFixture : IDisposable
-    {
-        public IMapper GetMapper()
-        {
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new ModelToEntityProfile());
-                cfg.AddProfile(new EntityToDtoProfile());
-                cfg.AddProfile(new DtoToModelProfile());
-            });
-            return config.CreateMapper();
-        }
-        public void Dispose()
-        {
-            // Clean up resources if needed
-        }
-    }
-
+    
     public class FakeWebHostEnvironment : IWebHostEnvironment
     {
         public string EnvironmentName { get; set; } = "Testing";

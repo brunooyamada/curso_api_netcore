@@ -33,6 +33,8 @@ namespace Data.Context
 
             UfSeeds.Ufs(modelBuilder);
 
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MyContext).Assembly);
+
         }
 
         public DbSet<UserEntity> Users { get; set; }

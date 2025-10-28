@@ -29,15 +29,6 @@ builder.Services.AddInfrastructureSwagger(builder.Configuration, builder.Environ
 //ConfigureService.ConfigureDependenciesService(builder.Services);
 //ConfigureRepository.ConfigureDependenciesRepository(builder.Services);
 
-var config = new AutoMapper.MapperConfiguration(cfg =>
-{
-    cfg.AddProfile(new DtoToModelProfile());
-    cfg.AddProfile(new EntityToDtoProfile());
-    cfg.AddProfile(new ModelToEntityProfile());
-});
-
-IMapper mapper = config.CreateMapper();
-builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 
