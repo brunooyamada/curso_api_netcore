@@ -29,12 +29,11 @@ namespace Api.Integration.Test
         {
             configuration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
             {
-                {"MinhaSecao:chave1", "valor1" },
+                {"ConnectionStrings:DefaultConnection", 
+                    "Server=localhost;Port=5432;Database=dbApi_Integration;Uid=postgres;Pwd=masterkey" },
             }).Build();
 
             hostApi = "https://localhost:7201/api/";
-
-            var connectionString = "Server=localhost;Port=5432;Database=dbApi;Uid=postgres;Pwd=masterkey";
 
             var environment = new FakeWebHostEnvironment { EnvironmentName = "Testing" };
             StartupConfigurationHelper.ConfigureEnvironment(environment, null);
