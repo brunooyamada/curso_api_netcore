@@ -26,8 +26,8 @@ namespace Data.Context
                     Id = 1,
                     Name = "Administrador",
                     Email = "mfrinfo@mail.com",
-                    CreateAt = DateTime.UtcNow,
-                    UpdateAt = DateTime.UtcNow,
+                    CreateAt = new DateTime(2025, 1, 1, 00, 0, 0, DateTimeKind.Utc),
+                    UpdateAt = new DateTime(2025, 1, 1, 00, 0, 0, DateTimeKind.Utc),
                 }
             );
 

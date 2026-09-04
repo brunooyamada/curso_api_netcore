@@ -17,7 +17,7 @@ namespace Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.13")
+                .HasAnnotation("ProductVersion", "10.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -132,189 +132,189 @@ namespace Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9449),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Acre",
                             Sigla = "AC"
                         },
                         new
                         {
                             Id = 2L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9451),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Alagoas",
                             Sigla = "AL"
                         },
                         new
                         {
                             Id = 3L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9452),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Amapá",
                             Sigla = "AP"
                         },
                         new
                         {
                             Id = 4L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9454),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Amazonas",
                             Sigla = "AM"
                         },
                         new
                         {
                             Id = 5L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9455),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Bahia",
                             Sigla = "BA"
                         },
                         new
                         {
                             Id = 6L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9456),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Ceará",
                             Sigla = "CE"
                         },
                         new
                         {
                             Id = 7L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9458),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Distrito Federal",
                             Sigla = "DF"
                         },
                         new
                         {
                             Id = 8L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9459),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Espírito Santo",
                             Sigla = "ES"
                         },
                         new
                         {
                             Id = 9L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9461),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Goiás",
                             Sigla = "GO"
                         },
                         new
                         {
                             Id = 10L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9463),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Maranhão",
                             Sigla = "MA"
                         },
                         new
                         {
                             Id = 11L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9464),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Mato Grosso",
                             Sigla = "MT"
                         },
                         new
                         {
                             Id = 12L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9465),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Mato Grosso do Sul",
                             Sigla = "MS"
                         },
                         new
                         {
                             Id = 13L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9466),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Minas Gerais",
                             Sigla = "MG"
                         },
                         new
                         {
                             Id = 14L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9468),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Pará",
                             Sigla = "PA"
                         },
                         new
                         {
                             Id = 15L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9469),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Paraíba",
                             Sigla = "PB"
                         },
                         new
                         {
                             Id = 16L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9470),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Paraná",
                             Sigla = "PR"
                         },
                         new
                         {
                             Id = 17L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9471),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Pernambuco",
                             Sigla = "PE"
                         },
                         new
                         {
                             Id = 18L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9472),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Piauí",
                             Sigla = "PI"
                         },
                         new
                         {
                             Id = 19L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9473),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Rio de Janeiro",
                             Sigla = "RJ"
                         },
                         new
                         {
                             Id = 20L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9475),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Rio Grande do Norte",
                             Sigla = "RN"
                         },
                         new
                         {
                             Id = 21L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9476),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Rio Grande do Sul",
                             Sigla = "RS"
                         },
                         new
                         {
                             Id = 22L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9477),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Rondônia",
                             Sigla = "RO"
                         },
                         new
                         {
                             Id = 23L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9478),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Roraima",
                             Sigla = "RR"
                         },
                         new
                         {
                             Id = 24L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9479),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Santa Catarina",
                             Sigla = "SC"
                         },
                         new
                         {
                             Id = 25L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9481),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "São Paulo",
                             Sigla = "SP"
                         },
                         new
                         {
                             Id = 26L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9482),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Sergipe",
                             Sigla = "SE"
                         },
                         new
                         {
                             Id = 27L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9483),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Nome = "Tocantins",
                             Sigla = "TO"
                         });
@@ -355,10 +355,10 @@ namespace Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9179),
+                            CreateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "mfrinfo@mail.com",
                             Name = "Administrador",
-                            UpdateAt = new DateTime(2025, 4, 25, 2, 14, 31, 940, DateTimeKind.Utc).AddTicks(9183)
+                            UpdateAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         });
                 });
 
